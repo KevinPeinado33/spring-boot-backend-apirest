@@ -29,6 +29,7 @@ public class Cliente implements Serializable {
 	@Column(name="create_at")
 	@Temporal(TemporalType.DATE)// para convertir la fecha en java a sql
 	private Date createAt;
+	
 
 	public Long getId() {
 		return id;
