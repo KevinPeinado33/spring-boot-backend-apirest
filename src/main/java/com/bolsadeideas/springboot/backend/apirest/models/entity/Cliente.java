@@ -45,13 +45,16 @@ public class Cliente implements Serializable {
 	private String email;
 
 	@Column(name = "create_at")
+	@NotNull(message = "no puede ser vacio")
 	@Temporal(TemporalType.DATE) // para convertir la fecha en java a sql
 	private Date createAt;
 
-	@NotNull(message="la región no puede ser vacia")
-	@ManyToOne(fetch = FetchType.LAZY) //crea un proxy con Region
+	private String foto;
+
+	@NotNull(message = "la región no puede ser vacia")
+	@ManyToOne(fetch = FetchType.LAZY) // crea un proxy con Region
 	@JoinColumn(name = "region_id")
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) // ignoramos estos atributos
+	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" }) // ignoramos estos atributos
 	private Region region;
 
 	@PrePersist // se va crear de forma automatica la fecha
@@ -61,10 +64,6 @@ public class Cliente implements Serializable {
 
 	public Long getId() {
 		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getNombre() {
@@ -97,6 +96,14 @@ public class Cliente implements Serializable {
 
 	public void setCreateAt(Date createAt) {
 		this.createAt = createAt;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 
 	public Region getRegion() {
